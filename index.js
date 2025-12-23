@@ -6,7 +6,7 @@ const client = new Client({
 });
 
 // ====== CONFIG ======
-const TOKEN = const TOKEN = process.env.TOKEN;
+const TOKEN = process.env.TOKEN; 
 const GUILD_ID = "1352467283603095683";
 const CHANNEL_ID = "1404060567374794782";
 const GROUP_URL = "https://groups.roblox.com/v1/groups/11005492";
@@ -49,7 +49,9 @@ async function post() {
   if (diff <= 0) return;
 
   const guild = client.guilds.cache.get(GUILD_ID);
+  if (!guild) return console.error("Guild not found");
   const channel = guild.channels.cache.get(CHANNEL_ID);
+  if (!channel) return console.error("Channel not found");
 
   let content = `⭐ We gained **${diff}** new member${diff === 1 ? "" : "s"}!
 **${formatCommas(members)}** total members`;
